@@ -3,7 +3,7 @@
 	<mat-list >
 	  	<mat-list-item *ngFor="let project of projects">
 		 	<a matLine>{{project.name}}</a>
-		 	<button mat-icon-button (click)="openDialog(colleague)">
+		 	<button mat-icon-button (click)="openDialog(project)">
         		<mat-icon>edit</mat-icon>
      		</button>
      		<button mat-icon-button (click)="deletePopup(project)">
@@ -12,5 +12,5 @@
 	 	</mat-list-item>
 		
 	</mat-list>
-	<a mat-button (click)="openDialog()">Create</a>
+	<a mat-raised-button (click)="openDialog()">Create</a>
 </div>

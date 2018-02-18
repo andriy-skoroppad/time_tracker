@@ -12,4 +12,8 @@ export class SettingMainComponent implements OnInit {
   ngOnInit() {
   }
 
+  cleareLocalSrore(): void{
+  	localStorage.clear();
+  }
+
 }

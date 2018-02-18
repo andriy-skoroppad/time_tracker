@@ -1,3 +1,24 @@
-<p>
-  main-page works!
-</p>
+<p>list of time track</p>
+<div>
+	<button mat-raised-button (click)="startNewTask()">Start</button>
+	<!-- <button mat-raised-button >Pause</button> -->
+
+</div>
+
+
+<mat-list role="list" class="list-task">
+  <mat-list-item class="list-task_row" role="listitem" *ngFor="let task of list">
+  	<div class="list-task_time">
+		<span class="list-task_start">{{task.startString}}</span>
+		<span class="list-task_end">{{task.endString}}</span>
+		<span class="list-task_end">{{task.spendString}}</span>
+  	</div>
+  	<div class="list-task_task">
+		<span class="list-task_project">{{task.project}}</span>
+		<span class="list-task_task">{{task.tasck}}</span>
+  	</div>
+  	<div class="list-task_deskription">
+		{{task.description}}
+  	</div>
+  </mat-list-item>
+</mat-list>

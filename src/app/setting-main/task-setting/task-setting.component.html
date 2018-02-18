@@ -1,3 +1,16 @@
-<p>
-  task-setting works!
-</p>
+<div class="collegs-setting">
+	<div class="collegs-setting_title">quick task edit list</div>
+	<mat-list >
+	  	<mat-list-item *ngFor="let task of tasks">
+		 	<a matLine>{{task.task}} {{task.isNeedColleagues? 'with Colleagues' : ''}}</a>
+		 	<button mat-icon-button (click)="openDialog(task)">
+        		<mat-icon>edit</mat-icon>
+     		</button>
+     		<button mat-icon-button (click)="deletePopup(task)">
+        		<mat-icon>delete</mat-icon>
+     		</button>
+	 	</mat-list-item>
+		
+	</mat-list>
+	<a mat-raised-button (click)="openDialog()">Create</a>
+</div>
