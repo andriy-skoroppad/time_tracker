@@ -67,7 +67,7 @@ export class MainPageComponent implements OnInit {
   	let timeConfig = {
 			hour: 'numeric',
   		minute: 'numeric',
-  		second: 'numeric'
+  		// second: 'numeric'
   	};
 
   	if(this.list.length){
@@ -83,9 +83,9 @@ export class MainPageComponent implements OnInit {
   			endString: "-",
   			spend: 0,
   			spendString: "-",
-  			project: "",
-  			tasck: "",
-  			description: ""
+  			project: "грлдодло",
+  			tasck: "80980",
+  			description: "пппппппппп"
   		})
   	} else {
   		this.list.push({
@@ -95,9 +95,9 @@ export class MainPageComponent implements OnInit {
   			endString: "-",
   			spend: 0,
   			spendString: "-",
-  			project: "",
-  			tasck: "",
-  			description: ""
+  			project: "прпар пар",
+  			tasck: "7000",
+  			description: "зфшк пмра рпарпар орпаоро"
   		})
   	}
   	clearInterval(this.timer);

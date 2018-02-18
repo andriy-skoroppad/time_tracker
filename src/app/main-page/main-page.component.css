@@ -1,0 +1,94 @@
+
+.list-task_row{
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+.list-task_time{
+	display: inline-block;
+	width: 33%
+}
+.list-task_times{
+	display: inline-block;
+	width: 66%
+}
+
+.list-task_tasks{
+	display: inline-block;
+	width: 33%
+}
+.list-task_deskription{
+	display: inline-block;
+	width: 32%
+}
+
+.list-task_start{
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+	display: inline-block;
+	width: 48%
+}
+.list-task_end{
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+	display: inline-block;
+	width: 48%
+}
+.list-task_spend{
+	display: inline-block;
+	width: 32%
+}
+.list-task_project{
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+	display: inline-block;
+	width: 48%
+}
+.list-task_task{
+	display: inline-block;
+	width: 48%
+}
+
+
+@media (max-width:800px){
+   .list-task_time{
+		display: inline-block;
+		width: 40%
+	}
+	.list-task_times{
+		display: inline-block;
+		width: 48%
+	}
+
+	.list-task_task{
+		display: inline-block;
+		width: 25%
+	}
+	.list-task_deskription{
+		display: inline-block;
+		width: 30%
+	}
+
+	.list-task_start{
+		display: inline-block;
+		width: 100%
+	}
+	.list-task_end{
+		display: inline-block;
+		width: 100%
+	}
+	.list-task_spend{
+		display: inline-block;
+		width: 45%
+	}
+	.list-task_project{
+		display: inline-block;
+		width: 100%
+	}
+	.list-task_task{
+		display: inline-block;
+		width: 100%
+	}
+}
