@@ -1,0 +1,16 @@
+<div class="collegs-setting">
+	<div class="collegs-setting_title">Сolleagues</div>
+	<mat-list >
+	  	<mat-list-item *ngFor="let colleague of colleagues">
+		 	<a matLine>{{colleague.name}}</a>
+		 	<button mat-icon-button (click)="openDialog(colleague)">
+        		<mat-icon>edit</mat-icon>
+     		</button>
+     		<button mat-icon-button (click)="deletePopup(colleague)">
+        		<mat-icon>delete</mat-icon>
+     		</button>
+	 	</mat-list-item>
+		
+	</mat-list>
+	<a mat-button (click)="openDialog()">Create</a>
+</div>

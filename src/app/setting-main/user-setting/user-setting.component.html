@@ -1,0 +1,16 @@
+<div class="user-setting">
+	<div class="user-setting_title">User</div>
+	<mat-list *ngIf="user">
+	  	<mat-list-item>
+		 	<a matLine>{{user}}</a>
+		 	<button mat-icon-button (click)="openDialog()">
+        		<mat-icon>edit</mat-icon>
+     		</button>
+     		<button mat-icon-button (click)="deletePopup()">
+        		<mat-icon>delete</mat-icon>
+     		</button>
+	 	</mat-list-item>
+		
+	</mat-list>
+	<a *ngIf="!user" mat-button (click)="openDialog()">Create</a>
+</div>
