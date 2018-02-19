@@ -39,7 +39,6 @@ export class UserSettingComponent implements OnInit {
     });
   }
 
-
   openDialog(): void {
     let dialogRef = this.dialog.open(EditNamePopup, {
       // width: '300px',
@@ -51,7 +50,7 @@ export class UserSettingComponent implements OnInit {
         this.user = result;
         this.Localstore.setUser(this.user);
       }
-      
+
     });
   }
 

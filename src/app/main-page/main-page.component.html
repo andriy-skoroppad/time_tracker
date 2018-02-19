@@ -34,10 +34,10 @@
   	</div>
   	<div class="list-task_tasks">
 		<span class="list-task_project">{{task.project}}</span>
-		<span class="list-task_task">{{task.tasck}}</span>
+		<span class="list-task_task" (click)="editTask(task)">{{task.tasck}}</span>
   	</div>
-  	<div class="list-task_deskription">
-		{{task.description}}
+  	<div class="list-task_deskription" (click)="editDescription(task)">
+		  {{task.description}}
   	</div>
   </mat-list-item>
 </mat-list>

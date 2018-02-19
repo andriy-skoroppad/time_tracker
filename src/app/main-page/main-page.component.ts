@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  OnDestroy} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+import { Localstore } from '../service/localstore.service';
+import { EditPopup } from '../popups/edit/popup-edit.component';
+import { EditDescriptionPopup } from '../popups/edit-description/popup-edit-description.component';
 
 import { Localstore } from '../service/localstore.service';
 
@@ -20,9 +24,12 @@ interface List {
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css'],
   providers: [Localstore],
-  entryComponents: []
+  entryComponents: [
+    EditPopup,
+    EditDescriptionPopup
+  ]
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnDestroy {
 
   constructor(private Localstore: Localstore, public dialog: MatDialog) { }
 
@@ -36,8 +43,8 @@ export class MainPageComponent implements OnInit {
   	let h = Math.floor( spend / 3600 );
   	let min = Math.floor( (spend - (h *  3600)) / 60 );
   	let sec = Math.floor( (spend - (h *  3600) - (min * 60) ));
-  	
-  	
+
+
 
 
   	return (h + ":" + this.toTwoNumber(min) + ":"  + this.toTwoNumber(sec));
@@ -52,14 +59,6 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-  	let tipObject = {
-  		start: 1200002221,
-  		end: null,
-  		spend: 0,
-  		project: "",
-  		tasck: "7545",
-  		description: "",
-  	}
   	this.list = this.Localstore.getAllList() || [];
   }
 
@@ -78,7 +77,7 @@ export class MainPageComponent implements OnInit {
 
   		this.list.push({
   			start: +(new Date() ),
-  			startString: (new Date() ).toLocaleString("ru", timeConfig), 
+  			startString: (new Date() ).toLocaleString("ru", timeConfig),
   			end: null,
   			endString: "-",
   			spend: 0,
@@ -90,7 +89,7 @@ export class MainPageComponent implements OnInit {
   	} else {
   		this.list.push({
   			start: +(new Date() ),
-  			startString: (new Date() ).toLocaleString("ru", timeConfig), 
+  			startString: (new Date() ).toLocaleString("ru", timeConfig),
   			end: null,
   			endString: "-",
   			spend: 0,
@@ -103,8 +102,42 @@ export class MainPageComponent implements OnInit {
   	clearInterval(this.timer);
   	this.timer = setInterval(()=>{
   		document.title = this.toTime( (+(new Date()) - this.list[this.list.length - 1].start)/1000 );
-  	}, 1000)
-  	
+  	}, 1000);
+
+    this.Localstore.setAllList(this.list);
   }
 
+  editTask(listItem) :void {
+    let dialogRef = this.dialog.open(EditPopup, {
+      // width: '300px',
+      data: { text : "Enter task", value: listItem.tasck}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        listItem.tasck = result;
+        this.Localstore.setAllList(this.list);
+      }
+    });
+  }
+
+  editDescription(listItem) :void {
+    let dialogRef = this.dialog.open(EditDescriptionPopup, {
+      // width: '300px',
+      data: { value: listItem.description}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      console.log(result)
+      if(result){
+        listItem.description = result;
+        this.Localstore.setAllList(this.list);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.timer);
+  }
 }
