@@ -1,11 +1,19 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Localstore } from '../../service/localstore.service';
+
+interface Selected {
+  task?: string;
+  name?: string;
+}
+
 @Component({
   selector: 'popup-edit-description-component',
   templateUrl: 'popup-edit-description.component.html',
   providers: [Localstore],
 })
+
+
 export class EditDescriptionPopup {
 
   constructor(
@@ -28,8 +36,9 @@ export class EditDescriptionPopup {
   selectQName (){
     this.data.value = this.generateTextForDescription();
   }
-  selected = {};
-  colleaguesSelected = {};
+
+  selected: Selected = {};
+  colleaguesSelected: Selected= {};
   listOfDescriptions = Localstore.getTasks();
   colleagues = Localstore.getColleagues();
   onNoClick(): void {

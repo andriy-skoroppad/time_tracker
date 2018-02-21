@@ -5,19 +5,19 @@ import { Localstore } from '../service/localstore.service';
 import { EditPopup } from '../popups/edit/popup-edit.component';
 import { EditDescriptionPopup } from '../popups/edit-description/popup-edit-description.component';
 
-import { Localstore } from '../service/localstore.service';
 
 interface List {
-    start?: number,
-    startString?: string,
-  	end?: number | null,
-  	endString?: string,
-  	spend?: number,
-  	spendString?: string,
-  	project?: string,
-  	tasck?: string,
-  	description?: string
+    start?: number;
+    startString?: string;
+  	end?: number | null;
+  	endString?: string;
+  	spend?: number;
+  	spendString?: string;
+  	project?: string;
+  	tasck?: string;
+  	description?: string;
 }
+
 
 @Component({
   selector: 'app-main-page',

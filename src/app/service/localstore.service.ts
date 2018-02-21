@@ -1,8 +1,8 @@
 export class Localstore {
-	
+
 	constructor() {}
 
-	saveTo = function (name: string, data: object | string) : void {
+	saveTo = function (name: string, data: {} | string) : void {
 		let text: string;
 		if(typeof data !== "string"){
 			text = JSON.stringify(data);
@@ -13,7 +13,7 @@ export class Localstore {
 	    localStorage.setItem(name, text);
 	}
 
-	getFrom = function(name: string) : string | object | null{
+	getFrom = function(name: string) : string | {} | null{
 		if(localStorage[name]){
 	        if(localStorage[name][0] === '{' || localStorage[name][0] === '['){
 	        	return JSON.parse( localStorage[name] );
@@ -24,7 +24,7 @@ export class Localstore {
 	    return null;
 	}
 
-	convertToCsv = function(data : object[]): string {
+	convertToCsv = function(data : {}[]): string {
 		let separator = "\t";
 		let nextRow = "\r\n";
 		let stringData = "";
@@ -118,4 +118,4 @@ export class Localstore {
 		this.saveTo("track", data);
 	}
 
-}	
+}
