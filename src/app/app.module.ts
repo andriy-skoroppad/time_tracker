@@ -46,6 +46,7 @@ import { DeletePopup } from './popups/delete/popup-delete.component';
 import { EditPopup } from './popups/edit/popup-edit.component';
 import { EditQuickTaskPopup } from './popups/edit-quick-task/popup-edit-quick-task.component';
 import { EditDescriptionPopup } from './popups/edit-description/popup-edit-description.component';
+import { EditProjectPopup } from './popups/edit-project/popup-edit-project.component';
 
 
 import { UserSettingComponent } from './setting-main/user-setting/user-setting.component';
@@ -69,7 +70,8 @@ import { CollegesSettingComponent } from './setting-main/colleges-setting/colleg
     DeletePopup,
     EditPopup,
     EditQuickTaskPopup,
-    EditDescriptionPopup
+    EditDescriptionPopup,
+    EditProjectPopup
   ],
   imports: [
     BrowserModule,
@@ -118,7 +120,8 @@ import { CollegesSettingComponent } from './setting-main/colleges-setting/colleg
     DeletePopup,
     EditPopup,
     EditQuickTaskPopup,
-    EditDescriptionPopup
+    EditDescriptionPopup,
+    EditProjectPopup
   ],
   providers: [],
   bootstrap: [AppComponent]

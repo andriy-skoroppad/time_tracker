@@ -3,30 +3,25 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Localstore } from '../../service/localstore.service';
 
 interface Selected {
-  task?: string;
   name?: string;
 }
 
 @Component({
-  selector: 'popup-edit-description-component',
-  templateUrl: 'popup-edit-description.component.html',
+  selector: 'popup-edit-project-component',
+  templateUrl: 'popup-edit-project.component.html',
   providers: [Localstore],
 })
 
 
-export class EditDescriptionPopup {
+export class EditProjectPopup {
 
   constructor(
     private Localstore: Localstore,
-    public dialogRef: MatDialogRef<EditDescriptionPopup>,
+    public dialogRef: MatDialogRef<EditProjectPopup>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
   generateTextForDescription(): string {
     let text: string = "";
-    text += this.selected.task;
-    if(this.colleaguesSelected.name){
-      text += " with " + this.colleaguesSelected.name;
-    }
-
+    text += this.selected.name;
     return text;
   }
 
@@ -38,9 +33,7 @@ export class EditDescriptionPopup {
   }
 
   selected: Selected = {};
-  colleaguesSelected: Selected= {};
-  listOfDescriptions = this.Localstore.getTasks();
-  colleagues = this.Localstore.getColleagues();
+  listOfProject = this.Localstore.getProjects();
   onNoClick(): void {
     this.dialogRef.close();
   }

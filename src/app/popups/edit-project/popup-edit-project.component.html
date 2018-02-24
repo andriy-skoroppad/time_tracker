@@ -1,0 +1,21 @@
+<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1> -->
+<div mat-dialog-content>
+  <!--<h1 mat-dialog-title>{{data.text}}</h1>-->
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Select quick description" [(ngModel)]="selected" (change)="selectQDescr()">
+        <mat-option [value]="desc" *ngFor="let desc of listOfProject">{{desc.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <textarea matInput placeholder="Enter description" [(ngModel)]="data.value"></textarea>
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">No</button>
+  <button mat-raised-button [mat-dialog-close]="data.value" cdkFocusInitial>Ok</button>
+</div>

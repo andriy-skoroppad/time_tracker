@@ -118,4 +118,30 @@ export class Localstore {
 		this.saveTo("track", data);
 	}
 
+	clear = function(name: string): void{
+
+    switch (name){
+      case "track":
+        localStorage.removeItem("track")
+        break;
+      case "tasks":
+        localStorage.removeItem("tasks")
+        break;
+      case "projects":
+        localStorage.removeItem("projects")
+        break;
+      case "collegs":
+        localStorage.removeItem("collegs")
+        break;
+      case "user":
+        localStorage.removeItem("user")
+        break;
+      case "all":
+        localStorage.clear();
+        break;
+
+
+    }
+  }
+
 }

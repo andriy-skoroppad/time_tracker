@@ -4,6 +4,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Localstore } from '../service/localstore.service';
 import { EditPopup } from '../popups/edit/popup-edit.component';
 import { EditDescriptionPopup } from '../popups/edit-description/popup-edit-description.component';
+import { EditProjectPopup } from '../popups/edit-project/popup-edit-project.component';
 
 
 interface List {
@@ -26,7 +27,8 @@ interface List {
   providers: [Localstore],
   entryComponents: [
     EditPopup,
-    EditDescriptionPopup
+    EditDescriptionPopup,
+    EditProjectPopup
   ]
 })
 export class MainPageComponent implements OnInit, OnDestroy {
@@ -82,9 +84,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
   			endString: "-",
   			spend: 0,
   			spendString: "-",
-  			project: "грлдодло",
-  			tasck: "80980",
-  			description: "пппппппппп"
+  			project: "-",
+  			tasck: "-",
+  			description: "-"
   		})
   	} else {
   		this.list.push({
@@ -94,9 +96,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
   			endString: "-",
   			spend: 0,
   			spendString: "-",
-  			project: "прпар пар",
-  			tasck: "7000",
-  			description: "зфшк пмра рпарпар орпаоро"
+  			project: "-",
+  			tasck: "-",
+  			description: "-"
   		})
   	}
   	clearInterval(this.timer);
@@ -132,6 +134,22 @@ export class MainPageComponent implements OnInit, OnDestroy {
       console.log(result)
       if(result){
         listItem.description = result;
+        this.Localstore.setAllList(this.list);
+      }
+    });
+  }
+
+  editProject(listItem): void{
+    let dialogRef = this.dialog.open(EditProjectPopup, {
+      // width: '300px',
+      data: { value: listItem.project}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      console.log(result)
+      if(result){
+        listItem.project = result;
         this.Localstore.setAllList(this.list);
       }
     });

@@ -33,7 +33,7 @@
 		<span class="list-task_spend">{{task.spendString}}</span>
   	</div>
   	<div class="list-task_tasks">
-		<span class="list-task_project">{{task.project}}</span>
+		<span class="list-task_project" (click)="editProject(task)">{{task.project}}</span>
 		<span class="list-task_task" (click)="editTask(task)">{{task.tasck}}</span>
   	</div>
   	<div class="list-task_deskription" (click)="editDescription(task)">
