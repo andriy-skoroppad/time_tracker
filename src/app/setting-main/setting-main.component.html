@@ -1,22 +1,28 @@
 <div class="main-setting">
-	<div class="main-setting_title">Setting</div>
-	<mat-nav-list>
+  <div class="main-setting_title">Setting</div>
+  <mat-nav-list>
+    <mat-list-item routerLink="/setting/user">
+      <a matLine> User</a>
+    </mat-list-item>
+    <mat-list-item routerLink="/setting/tasks">
+      <a matLine>Tascks</a>
+    </mat-list-item>
+    <mat-list-item routerLink="/setting/projects">
+      <a matLine>Projects</a>
+    </mat-list-item>
+    <mat-list-item routerLink="/setting/colleges">
+      <a matLine>Colleagues</a>
+    </mat-list-item>
+    <mat-list-item (click)="cleareLocalSroreTrack()">
+      <a matLine>Cleare all track</a>
+    </mat-list-item>
 
-	  	<mat-list-item routerLink="/setting/user">
-		 	<a matLine> User</a>
-	 	</mat-list-item>
-		<mat-list-item routerLink="/setting/tasks">
-		 	<a matLine>Tascks</a>
-	  	</mat-list-item>
-	  	<mat-list-item routerLink="/setting/projects">
-		 	<a matLine>Projects</a>
-	  	</mat-list-item>
-		<mat-list-item routerLink="/setting/colleges">
-		 	<a matLine>Colleagues</a>
-	  	</mat-list-item>
-	  	<mat-list-item (click)="cleareLocalSroreTrack()">
-		 	<a matLine>Cleare all track</a>
-	  	</mat-list-item>
+    <mat-list-item (click)="saveAllSettinfToFile()">
+      <a matLine> Save to file</a>
+    </mat-list-item>
+    <mat-list-item (click)="loadAllSettingFromFile()">
+      <a matLine> Load from file</a>
+    </mat-list-item>
 
-	</mat-nav-list>
+  </mat-nav-list>
 </div>

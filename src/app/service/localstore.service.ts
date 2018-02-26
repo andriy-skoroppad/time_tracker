@@ -139,8 +139,35 @@ export class Localstore {
       case "all":
         localStorage.clear();
         break;
+    }
+  }
+
+  add = function(name: string, data: any): void{
 
 
+  }
+
+  saveAllSeting (data): void{
+    for(let key in data){
+      if(data.hasOwnProperty(key)){
+        switch (key){
+          case "track":
+            this.saveTo("track", data[key]);
+            break;
+          case "tasks":
+            this.saveTo("tasks", data[key]);
+            break;
+          case "projects":
+            this.saveTo("projects", data[key]);
+            break;
+          case "collegs":
+            this.saveTo("collegs", data[key]);
+            break;
+          case "user":
+            this.saveTo("user", data[key]);
+            break;
+        }
+      }
     }
   }
 
