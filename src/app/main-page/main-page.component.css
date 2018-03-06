@@ -1,4 +1,18 @@
+.order-class{
+  order: 1;
+}
+.list-task{
 
+  position: relative;
+}
+.list-task+.list-task{
+  overflow-y: scroll;
+}
+.list-task_row__head{
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
 .list-task_row{
 	text-align: center;
 	border-bottom: 1px solid black;

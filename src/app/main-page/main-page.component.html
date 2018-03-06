@@ -1,27 +1,29 @@
-<p>list of time track</p>
-<div>
+<p class="order-class">list of time track</p>
+<div class="order-class">
 	<button mat-raised-button (click)="startNewTask()">Start</button>
 	<!-- <button mat-raised-button >Pause</button> -->
 </div>
 
-
-<mat-list role="list" class="list-task">
+<mat-list role="list" class="order-class list-task">
   <mat-list-item class="list-task_row" role="listitem">
-  	<div class="list-task_time">
-  		<div class="list-task_times">
-			<span class="list-task_start">Start</span>
-			<span class="list-task_end">End</span>
-  		</div>
-		<span class="list-task_spend">Spend</span>
-  	</div>
-  	<div class="list-task_tasks">
-		<span class="list-task_project">Project</span>
-		<span class="list-task_task">Task</span>
-  	</div>
-  	<div class="list-task_deskription">
-		Description
-  	</div>
+    <div class="list-task_time">
+      <div class="list-task_times">
+        <span class="list-task_start">Start</span>
+        <span class="list-task_end">End</span>
+      </div>
+      <span class="list-task_spend">Spend</span>
+    </div>
+    <div class="list-task_tasks">
+      <span class="list-task_project">Project</span>
+      <span class="list-task_task">Task</span>
+    </div>
+    <div class="list-task_deskription">
+      Description
+    </div>
   </mat-list-item>
+</mat-list>
+
+<mat-list role="list" class="order-class list-task">
 
   <mat-list-item class="list-task_row" role="listitem" *ngFor="let task of list">
   	<div class="list-task_time">
