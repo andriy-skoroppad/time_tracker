@@ -1,15 +1,25 @@
 .head{
 	height: auto;
+  min-height: 32px;
 	border-bottom: 1px solid black;
 	padding: 5px;
   order: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 	.head_setting{
-		float: right;
+    order: 3;
 	}
 	.head_main{
-
+    order: 1;
 	}
+  .head_info-time{
+    order: 2;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+  }
   .main-content{
     order: 2;
     display: flex;

@@ -55,6 +55,7 @@ import { EditNamePopup } from './setting-main/user-setting/popup/popup.component
 import { TaskSettingComponent } from './setting-main/task-setting/task-setting.component';
 import { ProjectsSettingComponent } from './setting-main/projects-setting/projects-setting.component';
 import { CollegesSettingComponent } from './setting-main/colleges-setting/colleges-setting.component';
+import { TimerComponent } from './timer/timer.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { CollegesSettingComponent } from './setting-main/colleges-setting/colleg
     EditPopup,
     EditQuickTaskPopup,
     EditDescriptionPopup,
-    EditProjectPopup
+    EditProjectPopup,
+    TimerComponent
   ],
   imports: [
     BrowserModule,
