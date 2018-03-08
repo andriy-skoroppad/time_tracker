@@ -2,10 +2,10 @@ import { Component, OnInit,  OnDestroy} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { Localstore } from '../service/localstore.service';
-import { IconCanvasService } from '../service/icon-canvas.service';
 import { EditPopup } from '../popups/edit/popup-edit.component';
 import { EditDescriptionPopup } from '../popups/edit-description/popup-edit-description.component';
 import { EditProjectPopup } from '../popups/edit-project/popup-edit-project.component';
+import {TimerService} from "../timer/timer.service";
 
 
 interface List {
@@ -25,7 +25,7 @@ interface List {
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css'],
-  providers: [Localstore, IconCanvasService],
+  providers: [Localstore],
   entryComponents: [
     EditPopup,
     EditDescriptionPopup,
@@ -34,43 +34,13 @@ interface List {
 })
 export class MainPageComponent implements OnInit, OnDestroy {
 
-  constructor(private Localstore: Localstore, private IconCanvasService: IconCanvasService, public dialog: MatDialog) { }
+  constructor(private Localstore: Localstore, public dialog: MatDialog, public TimerService: TimerService) { }
 
   list: List[];
   timer;
 
-  toTime(spend: number): {string: string;
-    h: number;
-    min: number;
-    sec: number;
-  }{
-  	if(!spend){
-  		return {
-        string: "",
-        h: 0,
-        min: 0,
-        sec: 0
-      };
-  	}
-  	let h = Math.floor( spend / 3600 );
-  	let min = Math.floor( (spend - (h *  3600)) / 60 );
-  	let sec = Math.floor( (spend - (h *  3600) - (min * 60) ));
 
-  	return {
-      string: (h + ":" + this.toTwoNumber(min) + ":"  + this.toTwoNumber(sec)),
-      h: h,
-      min: min,
-      sec: sec
-    };
-  }
 
-  toTwoNumber(val){
-  	if(val < 10){
-  		return "0" + val;
-  	} else {
-  		return "" + val;
-  	}
-  }
 
   ngOnInit() {
   	this.list = this.Localstore.getAllList() || [];
@@ -88,7 +58,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   		this.list[this.list.length - 1].end = +(new Date() );
   		this.list[this.list.length - 1].spend = this.list[this.list.length - 1].end - this.list[this.list.length - 1].start;
   		this.list[this.list.length - 1].endString = (new Date(this.list[this.list.length - 1].end) ).toLocaleString("ru", timeConfig);
-  		this.list[this.list.length - 1].spendString = this.toTime(this.list[this.list.length - 1].spend / 1000 ).string;
+  		this.list[this.list.length - 1].spendString = this.TimerService.toTime(this.list[this.list.length - 1].spend / 1000 ).string;
 
   		this.list.push({
   			start: +(new Date() ),
@@ -115,16 +85,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
   		})
   	}
 
-  	clearInterval(this.timer);
-  	this.timer = setInterval(()=>{
-      let time = this.toTime( (+(new Date()) - this.list[this.list.length - 1].start)/1000 );
-      if(time.h){
-        (document.querySelector('[rel="icon"]') as HTMLLinkElement).href = this.IconCanvasService.generateCanvasURL("" + time.h, "" + time.min)
-      } else {
-        (document.querySelector('[rel="icon"]') as HTMLLinkElement).href = this.IconCanvasService.generateCanvasURL("" + time.min, "" + time.sec);
-      }
-  		document.title = time.string;
-  	}, 1000);
+    this.TimerService.clearTimer();
+    this.TimerService.startTimer(this.list);
 
     this.Localstore.setAllList(this.list);
   }
@@ -175,7 +137,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
     });
   }
 
+  checkAsMarked (listItem){
+    listItem.isMarked = !listItem.isMarked;
+  }
+
   ngOnDestroy() {
-    clearInterval(this.timer);
+
   }
 }

@@ -6,7 +6,7 @@ export class FileLocalService {
   constructor() { }
 
   link: HTMLAnchorElement = (document.createElement("a") as HTMLAnchorElement) ;
-  openFile: HTMLInputElement = ( document.createElement("INPUT") as HTMLInputElement );
+  openFile: HTMLInputElement = ( document.createElement("input") as HTMLInputElement );
 
   openLocalFile (): any{
     this.openFile.type = "file";

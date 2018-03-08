@@ -1,3 +1,5 @@
+import {Injectable} from "@angular/core";
+@Injectable()
 export class Localstore {
 
 	constructor() {}
@@ -122,7 +124,8 @@ export class Localstore {
 
     switch (name){
       case "track":
-        localStorage.removeItem("track")
+        localStorage.removeItem("track");
+
         break;
       case "tasks":
         localStorage.removeItem("tasks")

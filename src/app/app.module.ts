@@ -56,6 +56,9 @@ import { TaskSettingComponent } from './setting-main/task-setting/task-setting.c
 import { ProjectsSettingComponent } from './setting-main/projects-setting/projects-setting.component';
 import { CollegesSettingComponent } from './setting-main/colleges-setting/colleges-setting.component';
 import { TimerComponent } from './timer/timer.component';
+import {Localstore} from "./service/localstore.service";
+import {TimerService} from "./timer/timer.service";
+import {IconCanvasService} from "./service/icon-canvas.service";
 
 
 @NgModule({
@@ -125,7 +128,7 @@ import { TimerComponent } from './timer/timer.component';
     EditDescriptionPopup,
     EditProjectPopup
   ],
-  providers: [],
+  providers: [Localstore, TimerService, IconCanvasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

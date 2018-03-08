@@ -25,10 +25,10 @@
 
 <mat-list role="list" class="order-class list-task">
 
-  <mat-list-item class="list-task_row" role="listitem" *ngFor="let task of list">
+  <mat-list-item class="list-task_row" role="listitem" *ngFor="let task of list" [ngClass]="{'list-task_row__cheked': task.isMarked}">
   	<div class="list-task_time">
   		<div class="list-task_times">
-  			<span class="list-task_start">{{task.startString}}</span>
+  			<span class="list-task_start" (click)="checkAsMarked(task)" >{{task.startString}}</span>
 			<span class="list-task_end">{{task.endString}}</span>
   		</div>
 		<span class="list-task_spend">{{task.spendString}}</span>

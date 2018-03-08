@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Localstore } from '../service/localstore.service';
 import { FileLocalService } from '../service/file-local.service';
+import {TimerService} from "../timer/timer.service";
 
 @Component({
   selector: 'app-setting-main',
@@ -10,13 +11,14 @@ import { FileLocalService } from '../service/file-local.service';
 })
 export class SettingMainComponent implements OnInit {
 
-  constructor(private Localstore: Localstore, private FileLocalService: FileLocalService) { }
+  constructor(private Localstore: Localstore, private FileLocalService: FileLocalService, private timerService: TimerService) { }
 
   ngOnInit() {
   }
 
   cleareLocalSroreTrack(): void{
     this.Localstore.clear("track");
+    this.timerService.clearTimer()
   }
   saveAllSettinfToFile(): void{
     let forSave = {
