@@ -7,7 +7,7 @@ import {IconCanvasService} from "../service/icon-canvas.service";
 export class TimerService {
 
   constructor(private localstore: Localstore, private IconCanvasService: IconCanvasService) { }
-  timeEvent = new BehaviorSubject(0);
+  timeEvent = new BehaviorSubject(this.toTime( 0));
 
   toTime(spend: number): {string: string;
     h: number;
@@ -55,7 +55,7 @@ export class TimerService {
     if(!list){
       this.clearTimer();
       return false;
-      
+
     }
     this.timer = setInterval(()=>{
       let time = this.toTime( (+(new Date()) - list[list.length - 1].start)/1000 );
@@ -65,8 +65,10 @@ export class TimerService {
         (document.querySelector('[rel="icon"]') as HTMLLinkElement).href = this.IconCanvasService.generateCanvasURL("" + time.min, "" + time.sec);
       }
       document.title = time.string;
+      this.timeEvent.next(time);
     }, 1000);
     return true;
   }
+
 
 }

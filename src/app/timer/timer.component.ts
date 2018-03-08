@@ -10,8 +10,15 @@ import {TimerService} from './timer.service';
 export class TimerComponent implements OnInit {
 
   constructor(public timerServis: TimerService) { }
-  time = '10:45';
+  // time = this.timerServis.timeEvent.getValue().string;
+  time = "";
+
   ngOnInit() {
+    console.log("start", this.timerServis.timeEvent)
+    this.timerServis.timeEvent.subscribe((value) => {
+      console.log(value);
+      this.time = value.string;
+    });
   }
 
 }
