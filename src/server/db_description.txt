@@ -1,0 +1,17 @@
+CREATE TABLE `tbl_user_data` (
+ 
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+
+  `data` varchar(255) NOT NULL,
+
+ `isDeleted` tinyint(4) DEFAULT NULL,
+
+  `createdAt` timestamp NULL DEFAULT NULL,
+
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (`id`),
+
+  UNIQUE KEY `id_UNIQUE` (`id`)
+
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
