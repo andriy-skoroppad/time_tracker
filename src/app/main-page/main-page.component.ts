@@ -18,6 +18,8 @@ interface List {
   	project?: string;
   	tasck?: string;
   	description?: string;
+  	date?: string;
+    isMarked?: boolean;
 }
 
 
@@ -53,6 +55,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   		minute: 'numeric',
   		// second: 'numeric'
   	};
+    let dayDateConfig = { year: 'numeric', month: 'numeric', day: 'numeric' };
 
   	if(this.list.length){
   		this.list[this.list.length - 1].end = +(new Date() );
@@ -69,7 +72,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
   			spendString: "-",
   			project: "-",
   			tasck: "-",
-  			description: "-"
+  			description: "-",
+        date: (new Date() ).toLocaleString("ru", dayDateConfig),
+        isMarked: false
   		})
   	} else {
   		this.list.push({
@@ -81,7 +86,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
   			spendString: "-",
   			project: "-",
   			tasck: "-",
-  			description: "-"
+  			description: "-",
+        date: (new Date() ).toLocaleString("ru", dayDateConfig),
+        isMarked: false
   		})
   	}
 
@@ -94,28 +101,29 @@ export class MainPageComponent implements OnInit, OnDestroy {
   editTask(listItem) :void {
     let dialogRef = this.dialog.open(EditPopup, {
       // width: '300px',
-      data: { text : "Enter task", value: listItem.tasck}
+      data: { text : "Enter task", value: (listItem.tasck !== "-"? listItem.tasck: "")}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        listItem.tasck = result;
+        listItem.tasck = result || "-";
         this.Localstore.setAllList(this.list);
       }
     });
   }
 
   editDescription(listItem) :void {
+
     let dialogRef = this.dialog.open(EditDescriptionPopup, {
       // width: '300px',
-      data: { value: listItem.description}
+      data: { value: (listItem.description !== "-"? listItem.description: "") }
     });
 
     dialogRef.afterClosed().subscribe(result => {
 
       console.log(result)
       if(result){
-        listItem.description = result;
+        listItem.description = result || "-";
         this.Localstore.setAllList(this.list);
       }
     });
@@ -124,14 +132,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
   editProject(listItem): void{
     let dialogRef = this.dialog.open(EditProjectPopup, {
       // width: '300px',
-      data: { value: listItem.project}
+      data: { value: (listItem.project !== "-"? listItem.project: "")}
     });
 
     dialogRef.afterClosed().subscribe(result => {
 
       console.log(result)
       if(result){
-        listItem.project = result;
+        listItem.project = result || "-";
         this.Localstore.setAllList(this.list);
       }
     });
@@ -139,6 +147,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   checkAsMarked (listItem){
     listItem.isMarked = !listItem.isMarked;
+    this.Localstore.setAllList(this.list);
+  }
+
+  cleareLocalSroreTrack(): void{
+    this.list = [];
+    this.Localstore.clear("track");
+    this.TimerService.clearTimer()
   }
 
   ngOnDestroy() {

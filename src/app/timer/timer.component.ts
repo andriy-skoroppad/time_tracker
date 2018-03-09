@@ -10,11 +10,13 @@ export class TimerComponent implements OnInit {
 
   constructor(private timerServis: TimerService) { }
   // time = this.timerServis.timeEvent.getValue().string;
-  time = "";
+  time = '';
+  allDay = '';
 
   ngOnInit() {
     this.timerServis.timeEvent.subscribe((value) => {
-      this.time = value.string;
+      this.time = value.time.string;
+      this.allDay = value.deyTime.string;
     });
   }
 

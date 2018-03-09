@@ -5,6 +5,19 @@
 
   position: relative;
 }
+.list-task_row__with-date{
+  margin-top: 25px;
+}
+.list-task_date{
+  display: none;
+}
+.list-task_row__with-date .list-task_date{
+  display: block;
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  text-decoration: underline;
+}
 .list-task+.list-task{
   overflow-x: hidden;
   overflow-y: auto;

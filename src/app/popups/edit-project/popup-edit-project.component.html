@@ -11,11 +11,11 @@
 
   <div>
     <mat-form-field>
-      <textarea matInput placeholder="Enter description" [(ngModel)]="data.value"></textarea>
+      <textarea matInput placeholder="Enter description" cdkFocusInitial [(ngModel)]="data.value"></textarea>
     </mat-form-field>
   </div>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button (click)="onNoClick()">No</button>
-  <button mat-raised-button [mat-dialog-close]="data.value" cdkFocusInitial>Ok</button>
+  <button mat-raised-button [mat-dialog-close]="data.value" >Ok</button>
 </div>

@@ -16,3 +16,6 @@ html, body{
   display: flex;
   flex-direction: column;
 }
+.right{
+  float: right;
+}
