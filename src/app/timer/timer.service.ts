@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Localstore} from "../service/localstore.service";
 import {IconCanvasService} from "../service/icon-canvas.service";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable()
 export class TimerService {
 
   constructor(private localstore: Localstore, private IconCanvasService: IconCanvasService) { }
-  timeEvent = new BehaviorSubject(this.toTime( 0));
+  timeEvent = new BehaviorSubject(this.toTime(0));
 
   toTime(spend: number): {string: string;
     h: number;
