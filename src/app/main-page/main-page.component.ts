@@ -6,6 +6,7 @@ import { EditPopup } from '../popups/edit/popup-edit.component';
 import { EditDescriptionPopup } from '../popups/edit-description/popup-edit-description.component';
 import { EditProjectPopup } from '../popups/edit-project/popup-edit-project.component';
 import {TimerService} from "../timer/timer.service";
+import {ConnectionPopup} from "../popups/conection/popup-conection.component";
 
 
 interface List {
@@ -31,7 +32,8 @@ interface List {
   entryComponents: [
     EditPopup,
     EditDescriptionPopup,
-    EditProjectPopup
+    EditProjectPopup,
+    ConnectionPopup
   ]
 })
 export class MainPageComponent implements OnInit, OnDestroy {
@@ -154,6 +156,17 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.list = [];
     this.Localstore.clear("track");
     this.TimerService.clearTimer()
+  }
+
+  synchronization(): void{
+    let dialogRef = this.dialog.open(ConnectionPopup, {
+      // width: '300px',
+      data: ""
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
   ngOnDestroy() {

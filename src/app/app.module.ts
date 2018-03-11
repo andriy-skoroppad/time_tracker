@@ -59,6 +59,7 @@ import { TimerComponent } from './timer/timer.component';
 import {Localstore} from "./service/localstore.service";
 import {TimerService} from "./timer/timer.service";
 import {IconCanvasService} from "./service/icon-canvas.service";
+import {ConnectionPopup} from "./popups/conection/popup-conection.component";
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import {IconCanvasService} from "./service/icon-canvas.service";
     EditQuickTaskPopup,
     EditDescriptionPopup,
     EditProjectPopup,
+    ConnectionPopup,
     TimerComponent
   ],
   imports: [
@@ -126,7 +128,8 @@ import {IconCanvasService} from "./service/icon-canvas.service";
     EditPopup,
     EditQuickTaskPopup,
     EditDescriptionPopup,
-    EditProjectPopup
+    EditProjectPopup,
+    ConnectionPopup
   ],
   providers: [Localstore, TimerService, IconCanvasService],
   bootstrap: [AppComponent]

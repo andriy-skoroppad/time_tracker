@@ -1,0 +1,15 @@
+ <h1 mat-dialog-title>Synchronization</h1>
+<div mat-dialog-content>
+  <div>
+    <mat-form-field>
+      <textarea matInput placeholder="Enter description" cdkFocusInitial [(ngModel)]="yorSertificate"></textarea>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button (click)="init()">Start</button>
+  <button mat-raised-button (click)="init2()">aaaa</button>
+  <button mat-raised-button (click)="closeDataChannels()">close</button>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">No</button>
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</div>
