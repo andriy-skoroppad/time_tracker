@@ -16,18 +16,18 @@ export class ConnectionPopup implements OnInit {
     this.dialogRef.close();
   }
   yorSertificate: string = "";
-  myPeerConnection: any = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+  // myPeerConnection: any = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
 
   init(){
-    createConnection();
+    // createConnection();
 
   }
   init2(){
 
-    sendData(this.yorSertificate)
+    // sendData(this.yorSertificate)
   }
   closeDataChannels(){
-    closeDataChannels()
+    // closeDataChannels()
   }
 
   ngOnInit(){
@@ -42,7 +42,7 @@ export class ConnectionPopup implements OnInit {
 
 
 }
-
+/*
 
 
 var localConnection;
@@ -223,4 +223,4 @@ function onSendChannelStateChange() {
 function onReceiveChannelStateChange() {
   var readyState = receiveChannel.readyState;
   trace('Receive channel state is: ' + readyState);
-}K,8HG
+};*/

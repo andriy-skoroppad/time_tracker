@@ -112,7 +112,7 @@ export class Localstore {
 		this.saveTo("tasks", data);
 	}
 
-	getAllList = function(): object[]{
+	getAllList = function(): any[]{
 		return this.getFrom("track");
 	}
 
