@@ -1,6 +1,6 @@
 .head{
 	height: auto;
-  min-height: 32px;
+  min-height: 60px;
 	border-bottom: 1px solid black;
 	padding: 5px;
   order: 1;
@@ -10,9 +10,18 @@
 }
 	.head_setting{
     order: 3;
+    height: 42px;
+    width: 42px;
+    margin: 10px;
+	}
+  .head_setting .large{
+    font-size: 40px;
+    width: 100%;
 	}
 	.head_main{
     order: 1;
+    font-size: 20px;
+    line-height: 62px;
 	}
   .head_info-time{
     order: 2;

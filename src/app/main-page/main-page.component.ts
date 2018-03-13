@@ -21,6 +21,7 @@ interface List {
   	description?: string;
   	date?: string;
     isMarked?: boolean;
+    lastUpdate?: number;
 }
 
 
@@ -76,7 +77,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
   			tasck: "-",
   			description: "-",
         date: (new Date() ).toLocaleString("ru", dayDateConfig),
-        isMarked: false
+        isMarked: false,
+        lastUpdate: +(new Date() )
   		})
   	} else {
   		this.list.push({
@@ -90,7 +92,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
   			tasck: "-",
   			description: "-",
         date: (new Date() ).toLocaleString("ru", dayDateConfig),
-        isMarked: false
+        isMarked: false,
+        lastUpdate: +(new Date() )
   		})
   	}
 
@@ -109,6 +112,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       if(result){
         listItem.tasck = result || "-";
+        listItem.lastUpdate = +(new Date() );
         this.Localstore.setAllList(this.list);
       }
     });
@@ -126,6 +130,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       console.log(result)
       if(result){
         listItem.description = result || "-";
+        listItem.lastUpdate = +(new Date() );
         this.Localstore.setAllList(this.list);
       }
     });
@@ -142,6 +147,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       console.log(result)
       if(result){
         listItem.project = result || "-";
+        listItem.lastUpdate = +(new Date() );
         this.Localstore.setAllList(this.list);
       }
     });
@@ -149,6 +155,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   checkAsMarked (listItem){
     listItem.isMarked = !listItem.isMarked;
+    listItem.lastUpdate = +(new Date() );
     this.Localstore.setAllList(this.list);
   }
 

@@ -1,14 +1,16 @@
-<p class="order-class">list of time track</p>
+<p class="order-class title-text">List of time track</p>
 <div class="order-class">
-	<button mat-raised-button (click)="startNewTask()">Start</button>
-  <button mat-raised-button (click)="synchronization()">Synchronization</button>
+	<button mat-raised-button
+          color="primary"
+          (click)="startNewTask()">Start</button>
+  <!--<button mat-raised-button (click)="synchronization()">Synchronization</button>-->
   <button mat-raised-button
           color="warn"
           class="right"
           (click)="cleareLocalSroreTrack()">Clear All</button>
 </div>
 
-<mat-list role="list" class="order-class list-task">
+<mat-list role="list" class="order-class list-task head-list">
   <mat-list-item class="list-task_row" role="listitem">
     <div class="list-task_time">
       <div class="list-task_times">
@@ -27,13 +29,14 @@
   </mat-list-item>
 </mat-list>
 
-<mat-list role="list" class="order-class list-task">
+<mat-list role="list" class="order-class list-task scroll-list">
 
   <mat-list-item class="list-task_row"
                  role="listitem"
                  *ngFor="let task of list; index as i"
                  [ngClass]="{'list-task_row__cheked': task.isMarked,
-                              'list-task_row__with-date': ( i=== 0 || task.date !== list[i-1].date) }">
+                              'list-task_row__with-date': ( i=== 0 || task.date !== list[i-1].date),
+                              'list-task_row__border-bottom': ( i + 1 !== list.length && task.date !== list[i+1].date)}">
     <div class="list-task_date">
       {{task.date}}
     </div>
@@ -42,7 +45,7 @@
   			<span class="list-task_start" (click)="checkAsMarked(task)" >{{task.startString}}</span>
 			<span class="list-task_end">{{task.endString}}</span>
   		</div>
-		<span class="list-task_spend">{{task.spendString}}</span>
+		<span class="list-task_spend bold">{{task.spendString}}</span>
   	</div>
   	<div class="list-task_tasks">
 		<span class="list-task_project" (click)="editProject(task)">{{task.project}}</span>
