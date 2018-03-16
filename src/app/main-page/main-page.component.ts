@@ -189,13 +189,15 @@ export class MainPageComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      listItem.start = +result;
-      listItem.startString = result.toLocaleString("ru", this.timeConfig);
-      this.recalculationTable();
-      this.Localstore.setAllList(this.list);
-      this.TimerService.clearTimer();
-      this.TimerService.startTimer(this.list);
+      if(result){
+        console.log(result);
+        listItem.start = +result;
+        listItem.startString = result.toLocaleString("ru", this.timeConfig);
+        this.recalculationTable();
+        this.Localstore.setAllList(this.list);
+        this.TimerService.clearTimer();
+        this.TimerService.startTimer(this.list);
+      }
     });
   }
 
