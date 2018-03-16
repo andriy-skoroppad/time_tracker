@@ -7,6 +7,7 @@ import { EditDescriptionPopup } from '../popups/edit-description/popup-edit-desc
 import { EditProjectPopup } from '../popups/edit-project/popup-edit-project.component';
 import {TimerService} from "../timer/timer.service";
 import {ConnectionPopup} from "../popups/conection/popup-conection.component";
+import {EditTimePopup} from "../popups/edit-time/popup-edit-time.component";
 
 
 interface List {
@@ -34,7 +35,8 @@ interface List {
     EditPopup,
     EditDescriptionPopup,
     EditProjectPopup,
-    ConnectionPopup
+    ConnectionPopup,
+    EditTimePopup
   ]
 })
 export class MainPageComponent implements OnInit, OnDestroy {
@@ -43,7 +45,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   list: List[];
   timer;
-
+  timeConfig = {
+    hour: 'numeric',
+    minute: 'numeric',
+    // second: 'numeric'
+  };
 
 
 
@@ -52,13 +58,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   }
 
+
   startNewTask(): void{
-  	let timeConfig = {
-			hour: 'numeric',
-  		minute: 'numeric',
-  		// second: 'numeric'
-  	};
-    let dayDateConfig = { year: 'numeric', month: 'numeric', day: 'numeric' };
+  let timeConfig = this.timeConfig;
+  let dayDateConfig = { year: 'numeric', month: 'numeric', day: 'numeric' };
 
   	if(this.list.length){
   		this.list[this.list.length - 1].end = +(new Date() );
@@ -174,6 +177,38 @@ export class MainPageComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
+  }
+  editStartTime(listItem, prewListItem){
+    let dialogRef = this.dialog.open(EditTimePopup, {
+      // width: '300px',
+      data: {
+        timeConfig: this.timeConfig,
+        thisStart: listItem.start,
+        prewStart: (prewListItem ? prewListItem.start : 0)
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      listItem.start = +result;
+      listItem.startString = result.toLocaleString("ru", this.timeConfig);
+      this.recalculationTable();
+      this.Localstore.setAllList(this.list);
+      this.TimerService.clearTimer();
+      this.TimerService.startTimer(this.list);
+    });
+  }
+
+  recalculationTable(){
+    for (let i = 0; i < this.list.length; i++){
+      if(i > 0){
+        this.list[i - 1].end = this.list[i].start;
+        this.list[i - 1].spend = this.list[i - 1].end - this.list[i - 1].start;
+        this.list[i - 1].endString = (new Date(this.list[i - 1].end) ).toLocaleString("ru", this.timeConfig);
+        this.list[i - 1].spendString = this.TimerService.toTime(this.list[i - 1].spend / 1000 ).string;
+      }
+    }
+    console.log(this.list)
   }
 
   ngOnDestroy() {

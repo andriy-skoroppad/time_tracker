@@ -48,7 +48,7 @@ export class CollegesSettingComponent implements OnInit {
   }
 
 
-  openDialog(colleague): void {
+  openDialog(colleague?): void {
     let dialogRef = this.dialog.open(EditPopup, {
       // width: '300px',
       data: { value: (colleague ? colleague.name : ''), text: "Enter name" }
@@ -63,7 +63,7 @@ export class CollegesSettingComponent implements OnInit {
       	}
         this.Localstore.setColleagues(this.colleagues);
       }
-      
+
     });
   }
 }

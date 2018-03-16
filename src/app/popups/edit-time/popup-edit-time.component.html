@@ -1,0 +1,10 @@
+ <h1 mat-dialog-title *ngIf="data.prewStart">You can't set time less than {{prewTime}}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input cdkFocusInitial matInput [(ngModel)]="thisTime" placeholder="HH:MM">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button [mat-dialog-close]="returnValidValue()">Ok</button>
+</div>

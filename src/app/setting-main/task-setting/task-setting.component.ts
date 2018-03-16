@@ -48,7 +48,7 @@ export class TaskSettingComponent implements OnInit {
   }
 
 
-  openDialog(task): void {
+  openDialog(task?): void {
     let dialogRef = this.dialog.open(EditQuickTaskPopup, {
       // width: '300px',
       data: { task: (task ? task.task : ''), isNeedColleagues: (task ? task.isNeedColleagues : false) }
@@ -64,7 +64,7 @@ export class TaskSettingComponent implements OnInit {
       	}
         this.Localstore.setTasks(this.tasks);
       }
-      
+
     });
 
 	}

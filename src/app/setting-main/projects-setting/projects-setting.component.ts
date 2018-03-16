@@ -48,7 +48,7 @@ export class ProjectsSettingComponent implements OnInit {
   }
 
 
-  openDialog(project): void {
+  openDialog(project?): void {
     let dialogRef = this.dialog.open(EditPopup, {
       // width: '300px',
       data: { value: (project ? project.name : ''), text: "Enter name" }
@@ -63,7 +63,7 @@ export class ProjectsSettingComponent implements OnInit {
       	}
         this.Localstore.setProjects(this.projects);
       }
-      
+
     });
   }
 }

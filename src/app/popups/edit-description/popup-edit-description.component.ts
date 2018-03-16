@@ -5,6 +5,7 @@ import { Localstore } from '../../service/localstore.service';
 interface Selected {
   task?: string;
   name?: string;
+  isNeedColleagues?: boolean;
 }
 
 @Component({

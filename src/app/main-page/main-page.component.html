@@ -42,10 +42,10 @@
     </div>
   	<div class="list-task_time">
   		<div class="list-task_times">
-  			<span class="list-task_start" (click)="checkAsMarked(task)" >{{task.startString}}</span>
-			<span class="list-task_end">{{task.endString}}</span>
+  			<span class="list-task_start" (click)="editStartTime(task, list[i - 1] )" >{{task.startString}}</span>
+			<span class="list-task_end" >{{task.endString}}</span>
   		</div>
-		<span class="list-task_spend bold">{{task.spendString}}</span>
+		<span class="list-task_spend bold" (click)="checkAsMarked(task)" >{{task.spendString}}</span>
   	</div>
   	<div class="list-task_tasks">
 		<span class="list-task_project" (click)="editProject(task)">{{task.project}}</span>
