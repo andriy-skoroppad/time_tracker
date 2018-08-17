@@ -8,6 +8,7 @@ import { EditProjectPopup } from '../popups/edit-project/popup-edit-project.comp
 import {TimerService} from "../timer/timer.service";
 import {ConnectionPopup} from "../popups/conection/popup-conection.component";
 import {EditTimePopup} from "../popups/edit-time/popup-edit-time.component";
+import { Api } from '../service/api.service';
 
 
 interface List {
@@ -30,7 +31,7 @@ interface List {
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css'],
-  providers: [Localstore],
+  providers: [Localstore, Api],
   entryComponents: [
     EditPopup,
     EditDescriptionPopup,
@@ -41,7 +42,7 @@ interface List {
 })
 export class MainPageComponent implements OnInit, OnDestroy {
 
-  constructor(private Localstore: Localstore, public dialog: MatDialog, public TimerService: TimerService) { }
+  constructor(private Localstore: Localstore, private api: Api, public dialog: MatDialog, public TimerService: TimerService) { }
 
   list: List[];
   timer;
@@ -211,6 +212,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
       }
     }
     console.log(this.list)
+  }
+
+  sendData(){
+    this.api.setData(1, {dsd: 12});
+  }
+  getData(){
+    this.api.getDataById(1);
   }
 
   ngOnDestroy() {

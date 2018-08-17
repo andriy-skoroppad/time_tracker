@@ -61,7 +61,8 @@ import {TimerService} from "./timer/timer.service";
 import {IconCanvasService} from "./service/icon-canvas.service";
 import {ConnectionPopup} from "./popups/conection/popup-conection.component";
 import {EditTimePopup} from "./popups/edit-time/popup-edit-time.component";
-
+import { Api } from './service/api.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import {EditTimePopup} from "./popups/edit-time/popup-edit-time.component";
   MatToolbarModule,
   MatTooltipModule,
     MatListModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpModule
   ],
   entryComponents: [
     EditNamePopup,
@@ -134,7 +136,7 @@ import {EditTimePopup} from "./popups/edit-time/popup-edit-time.component";
     ConnectionPopup,
     EditTimePopup
   ],
-  providers: [Localstore, TimerService, IconCanvasService],
+  providers: [Localstore, TimerService, IconCanvasService, Api],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
