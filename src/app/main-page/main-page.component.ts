@@ -215,7 +215,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   sendData(){
-    this.api.setData(1, {dsd: 12});
+    this.api.setData(21589, {dsd: 12});
   }
   getData(){
     this.api.getDataById(1);

@@ -5,18 +5,23 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Api {
 
-  constructor(private http: Http) { }
-
+  constructor(private http: Http) {}
+  basePath: string  = "http://localhost/src/server";
   getDataById(id){
-    return this.http.get("/send.php", {params :{id: id}})
-    // .pipe(map(res => res.json()))
-    .subscribe(data => console.log(data));
+    return this.http.get(`${this.basePath}/send.php`, {params :{id: id}})
+    .pipe(map(res => res.json()))
+    .subscribe(data => {
+      console.log(data);
+    });
   }
 
+
   setData(id, data){
-    this.http.post("/send.php", {data: data, isDelete: false}, {params :{data: data, isDelete: false}})
-    // .pipe(map(res => res.json()))
-    .subscribe(data => console.log(data));
+    this.http.post(`${this.basePath}/send.php`, {id: id, data: data, isDelete: false})
+    .pipe(map(res => res.json()))
+    .subscribe(data => {
+      console.log(data);
+    });
   }
 
 
