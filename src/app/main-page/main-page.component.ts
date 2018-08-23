@@ -9,6 +9,7 @@ import {TimerService} from "../timer/timer.service";
 import {ConnectionPopup} from "../popups/conection/popup-conection.component";
 import {EditTimePopup} from "../popups/edit-time/popup-edit-time.component";
 import { Api } from '../service/api.service';
+import { QrcodePopup } from '../popups/qrcode/popup-qrcode.component';
 
 
 interface List {
@@ -214,8 +215,20 @@ export class MainPageComponent implements OnInit, OnDestroy {
     console.log(this.list)
   }
 
-  sendData(){
-    this.api.setData(21589, {dsd: 12});
+  openQrcodePopup(){
+    // this.api.setData(21589, {dsd: 12});
+    let dialogRef = this.dialog.open(QrcodePopup, {
+      // width: '300px',
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      console.log(result)
+      if(result){
+        ;
+      }
+    });
   }
   getData(){
     this.api.getDataById(1);

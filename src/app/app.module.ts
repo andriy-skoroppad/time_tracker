@@ -63,6 +63,9 @@ import {ConnectionPopup} from "./popups/conection/popup-conection.component";
 import {EditTimePopup} from "./popups/edit-time/popup-edit-time.component";
 import { Api } from './service/api.service';
 import { HttpModule } from '@angular/http';
+import { QRCodeModule } from 'angularx-qrcode';
+import { QrcodePopup } from './popups/qrcode/popup-qrcode.component';
+import { Sinc } from './service/sinc.service';
 
 @NgModule({
   declarations: [
@@ -81,6 +84,7 @@ import { HttpModule } from '@angular/http';
     EditProjectPopup,
     ConnectionPopup,
     EditTimePopup,
+    QrcodePopup,
     TimerComponent
   ],
   imports: [
@@ -124,7 +128,8 @@ import { HttpModule } from '@angular/http';
   MatTooltipModule,
     MatListModule,
     MatFormFieldModule,
-    HttpModule
+    HttpModule,
+    QRCodeModule
   ],
   entryComponents: [
     EditNamePopup,
@@ -134,9 +139,10 @@ import { HttpModule } from '@angular/http';
     EditDescriptionPopup,
     EditProjectPopup,
     ConnectionPopup,
-    EditTimePopup
+    EditTimePopup,
+    QrcodePopup
   ],
-  providers: [Localstore, TimerService, IconCanvasService, Api],
+  providers: [Localstore, TimerService, IconCanvasService, Api, Sinc],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

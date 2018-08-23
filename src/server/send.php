@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
     $inputJSON = file_get_contents('php://input');
     $input = json_decode($inputJSON, TRUE); //convert JSON into array
-    $id = json_encode($input['id']);
+    $id = $input['id'];//string
     $data = json_encode($input['data']);
     $isDeleted = $input['isDeleted'];
     // запис даних можливий лише при наявності двох параметрів

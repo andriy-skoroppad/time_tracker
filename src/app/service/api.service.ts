@@ -7,8 +7,8 @@ export class Api {
 
   constructor(private http: Http) {}
   basePath: string  = "http://localhost/src/server";
-  getDataById(id){
-    return this.http.get(`${this.basePath}/send.php`, {params :{id: id}})
+  getDataById(id: number){
+    return this.http.get(`${this.basePath}/send.php`, {params :{id: id + ""}})
     .pipe(map(res => res.json()))
     .subscribe(data => {
       console.log(data);
@@ -16,8 +16,8 @@ export class Api {
   }
 
 
-  setData(id, data){
-    this.http.post(`${this.basePath}/send.php`, {id: id, data: data, isDelete: false})
+  setData(id: number, data: any){
+    this.http.post(`${this.basePath}/send.php`, {id: id + "", data: data})
     .pipe(map(res => res.json()))
     .subscribe(data => {
       console.log(data);

@@ -40,10 +40,10 @@ function getData($id = null){
 // внесення нових даних і видалення старих
 function insertData($id, $data, $isDeleted = true){
     global $link;
-
-    $query = ' INSERT INTO timer.tbl_user_data (id, data,isDeleted,createdAt) VALUES('.$id.', \''.$data.'\','.($isDeleted?1:0).','.time().');';
-
-    mysqli_query($link,$query) or die("{\"messege\": \"ERROR: Id Exist.\"}");
+    
+    $query = 'INSERT INTO timer.tbl_user_data (id, data,isDeleted,createdAt, updatedAt) VALUES( '.$id.' , \''.$data.'\', 1, NOW(), NOW());';
+    
+    mysqli_query($link,$query) or die('{"messege": "ERROR: Id Exist. id = '. $id.'"}');
 
     mysqli_query($link,'DELETE FROM timer.tbl_user_data WHERE updatedAt < (NOW() - INTERVAL 10 MINUTE)') or die("{\"messege\": \"ERROR: Delete failed.\"}");
     
