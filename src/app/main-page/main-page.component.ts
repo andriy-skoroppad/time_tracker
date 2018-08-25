@@ -13,6 +13,7 @@ import { QrcodePopup } from '../popups/qrcode/popup-qrcode.component';
 
 
 interface List {
+    id: number; 
     start?: number;
     startString?: string;
   	end?: number | null;
@@ -47,11 +48,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   list: List[];
   timer;
-  timeConfig = {
-    hour: 'numeric',
-    minute: 'numeric',
-    // second: 'numeric'
-  };
 
 
 
@@ -62,7 +58,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
 
   startNewTask(): void{
-  let timeConfig = this.timeConfig;
+  let timeConfig = this.TimerService.timeConfig;
   let dayDateConfig = { year: 'numeric', month: 'numeric', day: 'numeric' };
 
   	if(this.list.length){
@@ -72,6 +68,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   		this.list[this.list.length - 1].spendString = this.TimerService.toTime(this.list[this.list.length - 1].spend / 1000 ).string;
 
   		this.list.push({
+        id: +(new Date() ),
   			start: +(new Date() ),
   			startString: (new Date() ).toLocaleString("ru", timeConfig),
   			end: null,
@@ -87,6 +84,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   		})
   	} else {
   		this.list.push({
+        id: +(new Date() ),
   			start: +(new Date() ),
   			startString: (new Date() ).toLocaleString("ru", timeConfig),
   			end: null,
@@ -104,7 +102,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     this.TimerService.clearTimer();
     this.TimerService.startTimer(this.list);
-
     this.Localstore.setAllList(this.list);
   }
 
@@ -184,7 +181,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     let dialogRef = this.dialog.open(EditTimePopup, {
       // width: '300px',
       data: {
-        timeConfig: this.timeConfig,
+        timeConfig: this.TimerService.timeConfig,
         thisStart: listItem.start,
         prewStart: (prewListItem ? prewListItem.start : 0)
       }
@@ -194,7 +191,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       if(result){
         console.log(result);
         listItem.start = +result;
-        listItem.startString = result.toLocaleString("ru", this.timeConfig);
+        listItem.startString = result.toLocaleString("ru", this.TimerService.timeConfig);
         this.recalculationTable();
         this.Localstore.setAllList(this.list);
         this.TimerService.clearTimer();
@@ -208,7 +205,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       if(i > 0){
         this.list[i - 1].end = this.list[i].start;
         this.list[i - 1].spend = this.list[i - 1].end - this.list[i - 1].start;
-        this.list[i - 1].endString = (new Date(this.list[i - 1].end) ).toLocaleString("ru", this.timeConfig);
+        this.list[i - 1].endString = (new Date(this.list[i - 1].end) ).toLocaleString("ru", this.TimerService.timeConfig);
         this.list[i - 1].spendString = this.TimerService.toTime(this.list[i - 1].spend / 1000 ).string;
       }
     }
@@ -224,10 +221,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      console.log(result)
-      if(result){
-        ;
-      }
+      this.list = this.Localstore.getAllList() || [];
+      this.TimerService.startTimer(this.list);
     });
   }
   getData(){

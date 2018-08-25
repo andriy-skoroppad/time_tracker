@@ -1,6 +1,6 @@
 <?php
 //підключення і конф бд
-$link = mysqli_connect('localhost', 'root', '')//domen, username, pasword
+$link = mysqli_connect('192.168.1.5', 'root', '')//domen, username, pasword
 
 or die("{\"messege\": \"ERROR: DB connection fail.\"}");
 
@@ -30,7 +30,7 @@ function getData($id = null){
 
     mysqli_query($link,'DELETE FROM timer.tbl_user_data WHERE updatedAt < (NOW() - INTERVAL 10 MINUTE)')
      or die("{\"messege\": \"ERROR: Delete old failed.\"}");
-    mysqli_query($link,'DELETE FROM timer.tbl_user_data WHERE id < = '. $id )
+    mysqli_query($link,'DELETE FROM timer.tbl_user_data WHERE id = '.$id.';' )
      or die("{\"messege\": \"ERROR: Delete by id failed.\"}");
 
     mysqli_close($link);

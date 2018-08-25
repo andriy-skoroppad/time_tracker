@@ -21,9 +21,11 @@ export class QrcodePopup implements OnInit {
   bathePath: string = "sinc/";
   url: string;
   unicId: number;
+  interval: any;
 
   onNoClick(): void {
     this.dialogRef.close();
+    clearInterval(this.interval);
   }
   returnValidValue(){
     // let arrayOfTime = this.thisTime.split(":");
@@ -36,6 +38,27 @@ export class QrcodePopup implements OnInit {
     //   return this.data.thisStart;
     // }
   }
+  whaiteDataWithUpdate(id: number){
+    return new Promise((resolve, reject) => {
+      let counter = 0;
+      this.interval = setInterval(()=>{
+        if(counter > 30){
+          clearInterval(this.interval);
+          reject("Long time");
+        } else {
+          this.api.getDataById(this.sinc.getUpdateId(id)).then((data: any) => {
+            if(data.messege){
+              reject(data);
+            } else if(data[0]){
+              clearInterval(this.interval);
+              resolve(data[0]);
+            }
+          });
+        }
+        counter++
+      }, 5000)
+    });
+  }
 
   ngOnInit(){
     let domain: string;
@@ -45,7 +68,23 @@ export class QrcodePopup implements OnInit {
     } );
     this.unicId = this.sinc.getUnicId();
     this.url = domain + this.bathePath + this.unicId;
-    this.api.setData(this.unicId, this.localstore.getAllList());
+    this.api.setData(this.unicId, this.localstore.getAllList()).then((data:any) => {
+      if(data && data.data){
+        this.whaiteDataWithUpdate(this.unicId)
+        .then( (data: any) => {
+          this.localstore.setAllList(data["data"]);
+          this.dialogRef.close();
+        })
+        .catch(error => {
+          console.error(error);
+          this.dialogRef.close();
+        });
+      } else {
+        console.error(data);
+        this.dialogRef.close();
+      }
+    });
+    
     console.log(this.url);
     
     

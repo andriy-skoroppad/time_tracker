@@ -8,10 +8,11 @@ import { CollegesSettingComponent } from '../setting-main/colleges-setting/colle
 import { ProjectsSettingComponent } from '../setting-main/projects-setting/projects-setting.component';
 import { TaskSettingComponent } from '../setting-main/task-setting/task-setting.component';
 import { UserSettingComponent } from '../setting-main/user-setting/user-setting.component';
-
+import { SincPageComponent } from '../sinc-page/sinc-page.component';
 
 
 import { RouterModule, Routes } from '@angular/router';
+
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'setting/projects', component: ProjectsSettingComponent },
   { path: 'setting/tasks', component: TaskSettingComponent },
   { path: 'setting/user', component: UserSettingComponent },
+  { path: 'sinc/:id', component: SincPageComponent },
 ];
 
 @NgModule({

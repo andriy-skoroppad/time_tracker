@@ -66,6 +66,7 @@ import { HttpModule } from '@angular/http';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QrcodePopup } from './popups/qrcode/popup-qrcode.component';
 import { Sinc } from './service/sinc.service';
+import { SincPageComponent } from './sinc-page/sinc-page.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { Sinc } from './service/sinc.service';
     ConnectionPopup,
     EditTimePopup,
     QrcodePopup,
-    TimerComponent
+    TimerComponent,
+    SincPageComponent
   ],
   imports: [
     BrowserModule,

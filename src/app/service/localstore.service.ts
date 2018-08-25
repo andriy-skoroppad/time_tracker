@@ -113,11 +113,16 @@ export class Localstore {
 	}
 
 	getAllList = function(): any[]{
+		let list = this.getFrom("track");
+		if(typeof list !== "object"){
+			this.saveTo("track", []);
+			return [];
+		}
 		return this.getFrom("track");
 	}
 
 	setAllList = function(data: object[]): void{
-		this.saveTo("track", data);
+		this.saveTo("track", data || []);
 	}
 
 	clear = function(name: string): void{

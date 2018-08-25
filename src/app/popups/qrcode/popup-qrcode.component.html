@@ -1,8 +1,7 @@
- <h1 mat-dialog-title>Please scan</h1>
+ <h1 mat-dialog-title>Please scan and don't close popup.</h1>
 <div mat-dialog-content>
   <qrcode [qrdata]="url" [size]="128" [level]="'M'"></qrcode>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button (click)="onNoClick()">Cancele</button>
-  <button mat-raised-button [mat-dialog-close]="returnValidValue()">Ok</button>
 </div>

@@ -8,6 +8,11 @@ export class TimerService {
 
   constructor(private localstore: Localstore, private IconCanvasService: IconCanvasService) { }
   timeEvent = new BehaviorSubject({time: this.toTime(0), deyTime: this.toTime( 0)});
+  timeConfig = {
+    hour: 'numeric',
+    minute: 'numeric',
+    // second: 'numeric'
+  };
 
   toTime(spend: number): {string: string;
     h: number;
@@ -75,15 +80,21 @@ export class TimerService {
 
     }
     this.timer = setInterval(()=>{
-      let time = this.toTime( (+(new Date()) - list[list.length - 1].start)/1000 );
-      let deyTime = this.toTime( (this.thisTimeTreck() + +(new Date()) - list[list.length - 1].start)/1000 );
-      if(time.h){
-        (document.querySelector('[rel="icon"]') as HTMLLinkElement).href = this.IconCanvasService.generateCanvasURL("" + time.h, "" + time.min)
+      if(list.length){
+        let time = this.toTime( (+(new Date()) - list[list.length - 1].start)/1000 );
+        let deyTime = this.toTime( (this.thisTimeTreck() + +(new Date()) - list[list.length - 1].start)/1000 );
+        if(time.h){
+          (document.querySelector('[rel="icon"]') as HTMLLinkElement).href = this.IconCanvasService.generateCanvasURL("" + time.h, "" + time.min)
+        } else {
+          (document.querySelector('[rel="icon"]') as HTMLLinkElement).href = this.IconCanvasService.generateCanvasURL("" + time.min, "" + time.sec);
+        }
+        document.title = time.string;
+        this.timeEvent.next({time: time, deyTime: deyTime});
       } else {
-        (document.querySelector('[rel="icon"]') as HTMLLinkElement).href = this.IconCanvasService.generateCanvasURL("" + time.min, "" + time.sec);
+        document.title = "Stop";
+        (document.querySelector('[rel="icon"]') as HTMLLinkElement).href = this.IconCanvasService.generateCanvasURL("0", "0");
       }
-      document.title = time.string;
-      this.timeEvent.next({time: time, deyTime: deyTime});
+      
     }, 1000);
     return true;
   }
