@@ -3,14 +3,14 @@
   <!--<h1 mat-dialog-title>{{data.text}}</h1>-->
   <div>
     <mat-form-field>
-      <mat-select placeholder="Select quick description" [(ngModel)]="selected" (change)="selectQDescr()">
+      <mat-select placeholder="Select quick description" [(ngModel)]="selected" (selectionChange)="selectQDescr()">
         <mat-option [value]="desc" *ngFor="let desc of listOfDescriptions">{{desc.task}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <div *ngIf="selected.isNeedColleagues">
     <mat-form-field>
-      <mat-select placeholder="Select Сolleagues" [(ngModel)]="colleaguesSelected" (change)="selectQName()">
+      <mat-select placeholder="Select Сolleagues" [(ngModel)]="colleaguesSelected" (selectionChange)="selectQName()">
         <mat-option [value]="coll" *ngFor="let coll of colleagues">{{coll.name}}</mat-option>
       </mat-select>
     </mat-form-field>

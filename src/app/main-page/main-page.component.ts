@@ -1,5 +1,5 @@
 import { Component, OnInit,  OnDestroy} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Localstore } from '../service/localstore.service';
 import { EditPopup } from '../popups/edit/popup-edit.component';
