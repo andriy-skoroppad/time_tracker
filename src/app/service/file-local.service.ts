@@ -26,7 +26,7 @@ export class FileLocalService {
           reader.onload = function(e) {
             var text = reader.result;
             openFile.value = '';
-            resolve(JSON.parse(text));
+            resolve(JSON.parse(text as string));
           };
 
           reader.readAsText(file);

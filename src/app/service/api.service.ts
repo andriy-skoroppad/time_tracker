@@ -41,9 +41,7 @@ export class Api {
         jsonData = "[]";
       }
       this.http.post(`${this.basePath}/send.php`, {id: stringId, data: jsonData})
-      .pipe(map(res =>{
-        return res.json();
-      })).subscribe( data => {
+      .subscribe( data => {
         console.log(data);
         resolve(data);
       })
