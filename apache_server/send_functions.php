@@ -1,13 +1,13 @@
 <?php
 //підключення і конф бд
-$link = mysqli_connect('192.168.1.5', 'root', '')//domen, username, pasword
+$link = mysqli_connect('192.168.1.6', 'root', '')//domen, username, pasword
 
 or die("{\"messege\": \"ERROR: DB connection fail.\"}");
 
 mysqli_select_db($link, 'timer') or die("{\"messege\": \"ERROR: DB select fail.\"}");
 
 //отримапння даних і заодно і видалення їх
-function getData($id = null){
+function getData($id = null, $isNedDelete = true){
     global $link;
 
     if($id){
@@ -26,8 +26,11 @@ function getData($id = null){
         $row["id"] = $rowset["id"];
         $row["data"] = $rowset["data"];
         $dataset[] = $row;
-        mysqli_query($link,'DELETE FROM timer.tbl_user_data WHERE id = '.$id.';' )
-     		or die("{\"messege\": \"ERROR: Delete by id failed.\"}");
+        if($isNedDelete){    
+            mysqli_query($link,'DELETE FROM timer.tbl_user_data WHERE id = '.$id.';' )
+     		    or die("{\"messege\": \"ERROR: Delete by id failed.\"}");
+        }
+        
     }
 
     mysqli_query($link,'DELETE FROM timer.tbl_user_data WHERE updatedAt < (NOW() - INTERVAL 10 MINUTE)')
@@ -45,10 +48,10 @@ function insertData($id, $data, $isDeleted = true){
     $query = 'INSERT INTO timer.tbl_user_data (id, data,isDeleted,createdAt, updatedAt) VALUES( '.$id.' , \''.str_replace("'", "\'", $data).'\', 1, NOW(), NOW());';
     //$query = 'INSERT INTO timer.tbl_user_data ("id","createdAt") VALUES( '.$id.' , NOW(), NOW());';
     
-    mysqli_query($link,$query); //or die('{"messege": "ERROR: Id Exist. id = "'. $id.'", query: "'.$query.'"}');
+    mysqli_query($link,$query) or die('{"messege": "ERROR: Id Exist. id = "'. $id.'", query: "'.$query.'"}');
 
     mysqli_query($link,'DELETE FROM timer.tbl_user_data WHERE updatedAt < (NOW() - INTERVAL 10 MINUTE)') or die("{\"messege\": \"ERROR: Delete failed.\"}");
-    $succses["data"] = getData($id); //json_decode($data, TRUE);
+    $succses["data"] = getData($id, false); //json_decode($data, TRUE);
     $succses["id"] = $id; //json_decode($data, TRUE);
     $succses["query"] = $query; //json_decode($data, TRUE);
     $succses["messege"] = "SUCCESS: Add to DB.";

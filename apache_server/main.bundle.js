@@ -266,7 +266,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/main-page/main-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p class=\"order-class title-text\">List of time track</p>\r\n<div class=\"order-class\">\r\n\t<button mat-raised-button\r\n          color=\"primary\"\r\n          (click)=\"startNewTask()\">Start</button>\r\n  <!--<button mat-raised-button (click)=\"synchronization()\">Synchronization</button>-->\r\n  <button mat-raised-button\r\n          color=\"warn\"\r\n          class=\"right\"\r\n          (click)=\"getData()\">Get Data</button>\r\n  <button mat-raised-button\r\n          color=\"warn\"\r\n          class=\"right\"\r\n          (click)=\"openQrcodePopup()\">sinc</button>\r\n  <button mat-raised-button\r\n          color=\"warn\"\r\n          class=\"right\"\r\n          (click)=\"cleareLocalSroreTrack()\">Clear All</button>\r\n</div>\r\n\r\n<mat-list role=\"list\" class=\"order-class list-task head-list\">\r\n  <mat-list-item class=\"list-task_row\" role=\"listitem\">\r\n    <div class=\"list-task_time\">\r\n      <div class=\"list-task_times\">\r\n        <span class=\"list-task_start\">Start</span>\r\n        <span class=\"list-task_end\">End</span>\r\n      </div>\r\n      <span class=\"list-task_spend\">Spend</span>\r\n    </div>\r\n    <div class=\"list-task_tasks\">\r\n      <span class=\"list-task_project\">Project</span>\r\n      <span class=\"list-task_task\">Task</span>\r\n    </div>\r\n    <div class=\"list-task_deskription\">\r\n      Description\r\n    </div>\r\n  </mat-list-item>\r\n</mat-list>\r\n\r\n<mat-list role=\"list\" class=\"order-class list-task scroll-list\">\r\n\r\n  <mat-list-item class=\"list-task_row\"\r\n                 role=\"listitem\"\r\n                 *ngFor=\"let task of list; index as i\"\r\n                 [ngClass]=\"{'list-task_row__cheked': task.isMarked,\r\n                              'list-task_row__with-date': ( i=== 0 || task.date !== list[i-1].date),\r\n                              'list-task_row__border-bottom': ( i + 1 !== list.length && task.date !== list[i+1].date)}\">\r\n    <div class=\"list-task_date\">\r\n      {{task.date}}\r\n    </div>\r\n  \t<div class=\"list-task_time\">\r\n  \t\t<div class=\"list-task_times\">\r\n  \t\t\t<span class=\"list-task_start\" (click)=\"editStartTime(task, list[i - 1] )\" >{{task.startString}}</span>\r\n\t\t\t<span class=\"list-task_end\" >{{task.endString}}</span>\r\n  \t\t</div>\r\n\t\t<span class=\"list-task_spend bold\" (click)=\"checkAsMarked(task)\" >{{task.spendString}}</span>\r\n  \t</div>\r\n  \t<div class=\"list-task_tasks\">\r\n\t\t<span class=\"list-task_project\" (click)=\"editProject(task)\">{{task.project}}</span>\r\n\t\t<span class=\"list-task_task\" (click)=\"editTask(task)\">{{task.tasck}}</span>\r\n  \t</div>\r\n  \t<div class=\"list-task_deskription\" (click)=\"editDescription(task)\">\r\n\t\t  {{task.description}}\r\n  \t</div>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
+module.exports = "<p class=\"order-class title-text\">List of time track</p>\r\n<div class=\"order-class\">\r\n\t<button mat-raised-button\r\n          color=\"primary\"\r\n          (click)=\"startNewTask()\">Start</button>\r\n  <!--<button mat-raised-button (click)=\"synchronization()\">Synchronization</button>-->\r\n  <button mat-raised-button\r\n          color=\"warn\"\r\n          class=\"right\"\r\n          (click)=\"openQrcodePopup()\">sinc</button>\r\n  <button mat-raised-button\r\n          color=\"#1cfd23\"\r\n          class=\"right\"\r\n          (click)=\"cleareLocalSroreTrack()\">Clear All</button>\r\n</div>\r\n\r\n<mat-list role=\"list\" class=\"order-class list-task head-list\">\r\n  <mat-list-item class=\"list-task_row\" role=\"listitem\">\r\n    <div class=\"list-task_time\">\r\n      <div class=\"list-task_times\">\r\n        <span class=\"list-task_start\">Start</span>\r\n        <span class=\"list-task_end\">End</span>\r\n      </div>\r\n      <span class=\"list-task_spend\">Spend</span>\r\n    </div>\r\n    <div class=\"list-task_tasks\">\r\n      <span class=\"list-task_project\">Project</span>\r\n      <span class=\"list-task_task\">Task</span>\r\n    </div>\r\n    <div class=\"list-task_deskription\">\r\n      Description\r\n    </div>\r\n  </mat-list-item>\r\n</mat-list>\r\n\r\n<mat-list role=\"list\" class=\"order-class list-task scroll-list\">\r\n\r\n  <mat-list-item class=\"list-task_row\"\r\n                 role=\"listitem\"\r\n                 *ngFor=\"let task of list; index as i\"\r\n                 [ngClass]=\"{'list-task_row__cheked': task.isMarked,\r\n                              'list-task_row__with-date': ( i=== 0 || task.date !== list[i-1].date),\r\n                              'list-task_row__border-bottom': ( i + 1 !== list.length && task.date !== list[i+1].date)}\">\r\n    <div class=\"list-task_date\">\r\n      {{task.date}}\r\n    </div>\r\n  \t<div class=\"list-task_time\">\r\n  \t\t<div class=\"list-task_times\">\r\n  \t\t\t<span class=\"list-task_start\" (click)=\"editStartTime(task, list[i - 1] )\" >{{task.startString}}</span>\r\n\t\t\t<span class=\"list-task_end\" >{{task.endString}}</span>\r\n  \t\t</div>\r\n\t\t<span class=\"list-task_spend bold\" (click)=\"checkAsMarked(task)\" >{{task.spendString}}</span>\r\n  \t</div>\r\n  \t<div class=\"list-task_tasks\">\r\n\t\t<span class=\"list-task_project\" (click)=\"editProject(task)\">{{task.project}}</span>\r\n\t\t<span class=\"list-task_task\" (click)=\"editTask(task)\">{{task.tasck}}</span>\r\n  \t</div>\r\n  \t<div class=\"list-task_deskription\" (click)=\"editDescription(task)\">\r\n\t\t  {{task.description}}\r\n  \t</div>\r\n  </mat-list-item>\r\n</mat-list>\r\n"
 
 /***/ }),
 
@@ -466,6 +466,7 @@ var MainPageComponent = /** @class */ (function () {
         });
         dialogRef.afterClosed().subscribe(function (result) {
             _this.list = _this.Localstore.getAllList() || [];
+            _this.TimerService.startTimer(_this.list);
         });
     };
     MainPageComponent.prototype.getData = function () {
@@ -1110,7 +1111,7 @@ var EditPopup = /** @class */ (function () {
 /***/ "../../../../../src/app/popups/qrcode/popup-qrcode.component.html":
 /***/ (function(module, exports) {
 
-module.exports = " <h1 mat-dialog-title>Please scan</h1>\r\n<div mat-dialog-content>\r\n  <qrcode [qrdata]=\"url\" [size]=\"128\" [level]=\"'M'\"></qrcode>\r\n</div>\r\n<div mat-dialog-actions>\r\n  <button mat-raised-button (click)=\"onNoClick()\">Cancele</button>\r\n  <button mat-raised-button [mat-dialog-close]=\"returnValidValue()\">Ok</button>\r\n</div>\r\n"
+module.exports = " <h1 mat-dialog-title>Please scan and don't close popup.</h1>\r\n<div mat-dialog-content>\r\n  <qrcode [qrdata]=\"url\" [size]=\"128\" [level]=\"'M'\"></qrcode>\r\n</div>\r\n<div mat-dialog-actions>\r\n  <button mat-raised-button (click)=\"onNoClick()\">Cancele</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1152,6 +1153,7 @@ var QrcodePopup = /** @class */ (function () {
     }
     QrcodePopup.prototype.onNoClick = function () {
         this.dialogRef.close();
+        clearInterval(this.interval);
     };
     QrcodePopup.prototype.returnValidValue = function () {
         // let arrayOfTime = this.thisTime.split(":");
@@ -1168,9 +1170,9 @@ var QrcodePopup = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             var counter = 0;
-            var interval = setInterval(function () {
+            _this.interval = setInterval(function () {
                 if (counter > 30) {
-                    clearInterval(interval);
+                    clearInterval(_this.interval);
                     reject("Long time");
                 }
                 else {
@@ -1179,7 +1181,7 @@ var QrcodePopup = /** @class */ (function () {
                             reject(data);
                         }
                         else if (data[0]) {
-                            clearInterval(interval);
+                            clearInterval(_this.interval);
                             resolve(data[0]);
                         }
                     });

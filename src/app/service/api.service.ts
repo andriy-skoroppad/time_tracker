@@ -1,19 +1,16 @@
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Api {
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
   basePath: string  = "";
   getDataById(id: number): any{
     return new Promise((resolve, reject) => {
       this.http.get(`${this.basePath}/send.php`, {params :{id: id + ""}})
-      .pipe(map(res => {
-        console.log(res);
-        return res.json();
-      })).subscribe( data => {
+      .subscribe( data => {
         if(data[0] && data[0].data){
           try {
             data[0].data = JSON.parse(data[0].data);
@@ -25,10 +22,10 @@ export class Api {
         console.log(data);
         resolve(data);
       })
-      
+
     });
-    
-  
+
+
   }
 
 
@@ -41,7 +38,7 @@ export class Api {
         jsonData = JSON.stringify(data);
       } catch (error) {
         console.error(error);
-        jsonData = "[]"; 
+        jsonData = "[]";
       }
       this.http.post(`${this.basePath}/send.php`, {id: stringId, data: jsonData})
       .pipe(map(res =>{
@@ -51,8 +48,8 @@ export class Api {
         resolve(data);
       })
     })
-    
-    
+
+
   }
 
 
